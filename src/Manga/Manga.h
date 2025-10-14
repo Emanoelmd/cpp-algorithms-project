@@ -6,9 +6,9 @@ class Manga {
         char autor[50];
         char genero[50];
         int volumes;
-        float minhaNota;
+        float nota;
     public:
-        Manga(const char* titulo_p, const char* autor_p, const char* genero_p, int volume_p, float minhaNota_p);
+        Manga(const char* titulo_p, const char* autor_p, const char* genero_p, int volume_p, float nota_p);
 
         void imprimirDetalhes();
 };

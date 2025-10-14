@@ -5,11 +5,13 @@
 struct No{
     No* proximo;
     Manga manga;
+
+    No(const Manga& m) : manga(m), proximo(nullptr) {}
 };
 
 class ListaLigada{
     private:
-        No* inicio;
+        No* cabeca;
     public:
         ListaLigada();
         ~ListaLigada();

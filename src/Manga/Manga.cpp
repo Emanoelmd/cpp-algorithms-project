@@ -8,13 +8,15 @@ Manga::Manga(const char* titulo_p, const char* autor_p, const char* genero_p, in
     strcpy(this->autor, autor_p);
     strcpy(this->genero, genero_p);
     this->volumes = volumes_p;
-    this->minhaNota = minhaNota_p;
+    this->nota = minhaNota_p;
 };
 
 void Manga::imprimirDetalhes(){
+    printf("===================================");
     printf("Nome do Mangá: %s\n", titulo);
     printf("Nome do Autor: %s\n", autor);
     printf("Genéro: %s\n", genero);
     printf("Quantidade de Volumes: %d\n", volumes);
-    printf("Nota de Avaliação: %2.f\n", minhaNota);
+    printf("Nota de Avaliação: %2.f\n", nota);
+    printf("===================================");
 }
