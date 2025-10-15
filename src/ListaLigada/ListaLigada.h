@@ -17,5 +17,7 @@ class ListaLigada{
         ~ListaLigada();
 
         void inserirManga(Manga novo_manga);
+        void salvarEmArquivo(const char* nomeArquivo);
+        void carregarDeArquivo(const char* nomeArquivo);
         void imprimirLista();
 };

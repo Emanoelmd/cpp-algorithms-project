@@ -10,15 +10,14 @@ void exibirMenu(){
     printf("2. Listar todos os mangá\n");
     printf("0. Sair\n");
     printf("===================================\n");
-    printf("Escolha uma das opções a cima: \n");
-    printf("===================================");
-
+    printf("Escolha uma das opções a cima: ");
 };
 
 int main(){
     ListaLigada colecao;
+    colecao.carregarDeArquivo("colecao_manga.txt");
     int opcao;
-
+    
     while (true){
         exibirMenu();
         scanf("%d", &opcao);
@@ -31,15 +30,15 @@ int main(){
             int volumes_local;
             float nota_local;
  
-            printf("Digite o nome do mangá: \n");
+            printf("Digite o nome do mangá: ");
             scanf("%s", titulo_local);
-            printf("Digite o nome do autor do mangá: \n");
+            printf("Digite o nome do autor do mangá: ");
             scanf("%s", autor_local);
-            printf("Digite o genero do mangá: \n");
+            printf("Digite o genero do mangá: ");
             scanf("%s", genero_local);
-            printf("Digite a quantidade de volumes do mangá: \n");
+            printf("Digite a quantidade de volumes do mangá: ");
             scanf("%d", &volumes_local);
-            printf("Digite a nota que você acredita que esse mangá merece: \n");
+            printf("Digite a nota que você acredita que esse mangá merece: ");
             scanf("%f", &nota_local);
 
             Manga novoManga(titulo_local, autor_local, genero_local, volumes_local, nota_local);
@@ -52,7 +51,9 @@ int main(){
         //Encerrando o menu
         }else if(opcao == 0){
             printf("Encerrando...");
-            
+
+            colecao.salvarEmArquivo("colecao_manga.txt");
+
             return 0;
 
         }else{
