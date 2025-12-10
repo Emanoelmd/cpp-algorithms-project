@@ -1,10 +1,22 @@
 #include "ListaLigada.h"
+#include "../Algoritmos/Algoritmos.h"
 
 #include <cstdio>
+#include <fstream>
 
 ListaLigada::ListaLigada(){
     this->cabeca = nullptr;
 };
+
+int ListaLigada::contarElementos() {
+    int cont = 0;
+    No* temp = cabeca;
+    while(temp != nullptr) {
+        cont++;
+        temp = temp->proximo;
+    }
+    return cont;
+}
 
 void ListaLigada::inserirManga(Manga novo_manga){
     No* nova_c = new No(novo_manga);
@@ -48,4 +60,57 @@ ListaLigada::~ListaLigada() {
     }
 
     this->cabeca = nullptr;
+}
+
+void ListaLigada::listarPorTitulo() {
+    int n = contarElementos();
+    if (n == 0) {
+        printf("Lista vazia.\n");
+        return;
+    }
+
+    Manga** vetor = new Manga*[n];
+    
+    No* temp = cabeca;
+    for(int i=0; i<n; i++) {
+        vetor[i] = &(temp->manga);
+        temp = temp->proximo;
+    }
+
+    quicksort(vetor, 0, n-1);
+
+    printf("\n--- MANGÁS ORDENADOS POR TÍTULO (A-Z) ---\n");
+    for(int i=0; i<n; i++) {
+        vetor[i]->imprimirDetalhes();
+    }
+
+    delete[] vetor;
+}
+
+void ListaLigada::buscarPorTitulo(const char* titulo) {
+    int n = contarElementos();
+    if (n == 0) {
+        printf("Lista vazia.\n");
+        return;
+    }
+
+    Manga** vetor = new Manga*[n];
+    No* temp = cabeca;
+    for(int i=0; i<n; i++) {
+        vetor[i] = &(temp->manga);
+        temp = temp->proximo;
+    }
+
+    quicksort(vetor, 0, n-1);
+
+    int indice = buscaBinaria(vetor, n, titulo);
+
+    if (indice != -1) {
+        printf("\nMangá Encontrado:\n");
+        vetor[indice]->imprimirDetalhes();
+    } else {
+        printf("\nMangá '%s' não encontrado.\n", titulo);
+    }
+
+    delete[] vetor;
 }

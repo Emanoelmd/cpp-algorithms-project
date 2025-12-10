@@ -1,5 +1,6 @@
 #include "src/Manga/Manga.h"
 #include "src/ListaLigada/ListaLigada.h"
+#include "src/Arvore/ArvoreBST.h"
 
 #include <cstdio>
 #include <cstring>
@@ -17,6 +18,8 @@ void exibirMenu(){
 
 int main(){
     ListaLigada colecao;
+    ArvoreBST indiceGeneros;
+
     int opcao;
 
     while (true){
@@ -44,12 +47,24 @@ int main(){
 
             Manga novoManga(titulo_local, autor_local, genero_local, volumes_local, nota_local);
             colecao.inserirManga(novoManga);
+            indiceGeneros.adicionarManga(novoManga);
 
-        //Mostrando lista de mangá
         }else if(opcao == 2){
             colecao.imprimirLista();
 
-        //Encerrando o menu
+        }else if (opcao == 3) {
+            colecao.listarPorTitulo();
+
+        }else if (opcao == 4) {
+            char busca[100];
+            printf("Digite o título para buscar: ");
+            scanf(" %[^\n]", busca);
+            colecao.buscarPorTitulo(busca);
+
+        }   
+         else if (opcao == 5) {
+            indiceGeneros.exibirPorGenero();
+
         }else if(opcao == 0){
             printf("Encerrando...");
             

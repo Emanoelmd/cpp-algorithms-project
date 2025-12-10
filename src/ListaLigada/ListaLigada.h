@@ -12,10 +12,16 @@ struct No{
 class ListaLigada{
     private:
         No* cabeca;
+
+        int contarElementos();
+
     public:
         ListaLigada();
         ~ListaLigada();
 
         void inserirManga(Manga novo_manga);
         void imprimirLista();
+
+        void listarPorTitulo();
+        void buscarPorTitulo(const char* titulo);
 };
