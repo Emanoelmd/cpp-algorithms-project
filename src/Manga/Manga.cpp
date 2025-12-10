@@ -13,12 +13,12 @@ Manga::Manga(const char* titulo_p, const char* autor_p, const char* genero_p, in
 
 void Manga::imprimirDetalhes(){
     printf("===================================\n");
-    printf("Nome do Mangá: %s\n", titulo);
+    printf("Nome do Manga: %s\n", titulo);
     printf("Nome do Autor: %s\n", autor);
-    printf("Genéro: %s\n", genero);
+    printf("Genero: %s\n", genero);
     printf("Quantidade de Volumes: %d\n", volumes);
-    printf("Nota de Avaliação: %2.f\n", nota);
-    printf("===================================");
+    printf("Nota de Avaliacao: %2.f\n", nota);
+    printf("===================================\n");
 }
 
 const char* Manga::getTitulo() const {

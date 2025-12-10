@@ -4,23 +4,6 @@
 #include <cstdio>
 #include <fstream>
 
-ListaLigada::ListaLigada(){
-    this->cabeca = nullptr;
-};
-ListaLigada::~ListaLigada() {
-    
-    No* no_atual = this->cabeca;
-    No* proximo_no = nullptr;
-
-    while (no_atual != nullptr) {
-        proximo_no = no_atual->proximo;
-        delete no_atual;
-        no_atual = proximo_no;
-    }
-    
-    this->cabeca = nullptr;
-}
-
 int ListaLigada::contarElementos() {
     int cont = 0;
     No* temp = cabeca;
@@ -54,7 +37,7 @@ void ListaLigada::salvarEmArquivo(const char* nomeArquivo){
     
     if(arquivo == NULL){
         
-        printf("O arquivo não está funcionando.");
+        printf("O arquivo não esta funcionando.");
 
         return;
     }
@@ -108,7 +91,7 @@ void ListaLigada::imprimirLista(){
     No* temp = cabeca;
 
     if(cabeca == nullptr){
-        printf("Não tem nenhuma mangá registrado.\n");
+        printf("Nao tem nenhuma manga registrado.\n");
 
         return;
     }else{
@@ -119,6 +102,10 @@ void ListaLigada::imprimirLista(){
     }
     
 }
+
+ListaLigada::ListaLigada(){
+    this->cabeca = nullptr;
+};
 
 ListaLigada::~ListaLigada() {
     
@@ -137,7 +124,7 @@ ListaLigada::~ListaLigada() {
 void ListaLigada::listarPorTitulo() {
     int n = contarElementos();
     if (n == 0) {
-        printf("Lista vazia.\n");
+        printf("Nao tem nenhuma manga registrado.\n");
         return;
     }
 
@@ -151,7 +138,7 @@ void ListaLigada::listarPorTitulo() {
 
     quicksort(vetor, 0, n-1);
 
-    printf("\n--- MANGÁS ORDENADOS POR TÍTULO (A-Z) ---\n");
+    printf("\n--- Mangas ordenados por titulo (A-Z) ---\n");
     for(int i=0; i<n; i++) {
         vetor[i]->imprimirDetalhes();
     }
@@ -162,7 +149,7 @@ void ListaLigada::listarPorTitulo() {
 void ListaLigada::buscarPorTitulo(const char* titulo) {
     int n = contarElementos();
     if (n == 0) {
-        printf("Lista vazia.\n");
+        printf("Nao tem nenhuma manga registrado.\n");
         return;
     }
 
@@ -178,10 +165,10 @@ void ListaLigada::buscarPorTitulo(const char* titulo) {
     int indice = buscaBinaria(vetor, n, titulo);
 
     if (indice != -1) {
-        printf("\nMangá Encontrado:\n");
+        printf("\nManga Encontrado:\n");
         vetor[indice]->imprimirDetalhes();
     } else {
-        printf("\nMangá '%s' não encontrado.\n", titulo);
+        printf("\nManga '%s' não encontrado.\n", titulo);
     }
 
     delete[] vetor;

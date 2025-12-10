@@ -6,12 +6,15 @@
 #include <cstring>
 
 void exibirMenu(){
-    printf("===== Minha Coleção de Mangás =====\n");
-    printf("1. Adicionar um novo mangá\n");
-    printf("2. Listar todos os mangá\n");
+    printf("===== Minha Colecao de mangas =====\n");
+    printf("1. Adicionar um novo manga\n");
+    printf("2. Listar todos os manga\n");
+    printf("3. Listar ordenado por Titulo (A-Z)\n");
+    printf("4. Buscar manga por Titulo\n");
+    printf("5. Listar por Genero\n");
     printf("0. Sair\n");
     printf("===================================\n");
-    printf("Escolha uma das opções a cima: ");
+    printf("Escolha uma das opcoes a cima: ");
 };
 
 int main(){
@@ -25,7 +28,7 @@ int main(){
         exibirMenu();
         scanf("%d", &opcao);
 
-        //Adicionar um novo mangá
+        //Adicionar um novo manga
         if(opcao == 1){
             char titulo_local[100];
             char autor_local[50];
@@ -33,15 +36,15 @@ int main(){
             int volumes_local;
             float nota_local;
  
-            printf("Digite o nome do mangá: ");
+            printf("Digite o nome do manga: ");
             scanf("%s", titulo_local);
-            printf("Digite o nome do autor do mangá: ");
+            printf("Digite o nome do autor do manga: ");
             scanf("%s", autor_local);
-            printf("Digite o genero do mangá: ");
+            printf("Digite o genero do manga: ");
             scanf("%s", genero_local);
-            printf("Digite a quantidade de volumes do mangá: ");
+            printf("Digite a quantidade de volumes do manga: ");
             scanf("%d", &volumes_local);
-            printf("Digite a nota que você acredita que esse mangá merece: ");
+            printf("Digite a nota que voce acredita que esse manga merece: ");
             scanf("%f", &nota_local);
 
             Manga novoManga(titulo_local, autor_local, genero_local, volumes_local, nota_local);
@@ -56,7 +59,7 @@ int main(){
 
         }else if (opcao == 4) {
             char busca[100];
-            printf("Digite o título para buscar: ");
+            printf("Digite o titulo para buscar: ");
             scanf(" %[^\n]", busca);
             colecao.buscarPorTitulo(busca);
 
@@ -72,7 +75,7 @@ int main(){
             return 0;
 
         }else{
-            printf("Opção Inválida.");
+            printf("Opcao Invalida.");
         }
     }
 
