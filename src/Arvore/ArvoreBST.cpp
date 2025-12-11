@@ -25,11 +25,11 @@ void ArvoreBST::adicionarManga(Manga m) {
 
 void ArvoreBST::exibirPorGenero() {
     if (raiz == nullptr) {
-        printf("A árvore de gêneros está vazia.\n");
+        printf("A arvore de generos esta vazia.\n");
     } else {
-        printf("\n==============================\n");
-        printf("   ÍNDICE POR GÊNEROS (A-Z)   \n");
-        printf("==============================\n");
+        printf("\n===================================\n");
+        printf("   Indice por Generos (A-Z)   \n");
+        printf("===================================\n");
         exibirRecursivo(raiz);
     }
 }
@@ -65,11 +65,29 @@ void ArvoreBST::exibirRecursivo(NoArvore* no) {
     if (no != nullptr) {
         exibirRecursivo(no->esquerda);
         
-        printf("\n>> GÊNERO: %s\n", no->genero);
-        printf("--------------------\n");
+        printf("\n>> Genero: %s\n", no->genero);
+        printf("===================================\n");
 
         no->mangasDoGenero.imprimirLista(); 
         
         exibirRecursivo(no->direita);
     }
+}
+
+bool ArvoreBST::removerMangaDoGenero(const char* titulo, const char* genero) {
+    NoArvore* temp = raiz;
+    
+    while (temp != nullptr) {
+        int comparacao = strcmp(genero, temp->genero);
+        
+        if (comparacao == 0) {
+            return temp->mangasDoGenero.removerManga(titulo);
+        }
+        else if (comparacao < 0) {
+            temp = temp->esquerda;
+        } else {
+            temp = temp->direita;
+        }
+    }
+    return false;
 }

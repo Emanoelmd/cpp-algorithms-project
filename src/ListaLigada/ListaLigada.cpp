@@ -1,7 +1,9 @@
 #include "ListaLigada.h"
 #include "../Algoritmos/Algoritmos.h"
+#include "../Arvore/ArvoreBST.h"
 
 #include <cstdio>
+#include <cstring>
 #include <fstream>
 
 int ListaLigada::contarElementos() {
@@ -12,6 +14,24 @@ int ListaLigada::contarElementos() {
         temp = temp->proximo;
     }
     return cont;
+}
+
+ListaLigada::ListaLigada(){
+    this->cabeca = nullptr;
+};
+
+ListaLigada::~ListaLigada() {
+    
+    No* no_atual = this->cabeca;
+    No* proximo_no = nullptr;
+
+    while (no_atual != nullptr) {
+        proximo_no = no_atual->proximo;
+        delete no_atual;
+        no_atual = proximo_no;
+    }
+
+    this->cabeca = nullptr;
 }
 
 void ListaLigada::inserirManga(Manga novo_manga){
@@ -103,24 +123,6 @@ void ListaLigada::imprimirLista(){
     
 }
 
-ListaLigada::ListaLigada(){
-    this->cabeca = nullptr;
-};
-
-ListaLigada::~ListaLigada() {
-    
-    No* no_atual = this->cabeca;
-    No* proximo_no = nullptr;
-
-    while (no_atual != nullptr) {
-        proximo_no = no_atual->proximo;
-        delete no_atual;
-        no_atual = proximo_no;
-    }
-
-    this->cabeca = nullptr;
-}
-
 void ListaLigada::listarPorTitulo() {
     int n = contarElementos();
     if (n == 0) {
@@ -138,7 +140,7 @@ void ListaLigada::listarPorTitulo() {
 
     quicksort(vetor, 0, n-1);
 
-    printf("\n--- Mangas ordenados por titulo (A-Z) ---\n");
+    printf("\n=== Mangas ordenados por titulo (A-Z) ===\n");
     for(int i=0; i<n; i++) {
         vetor[i]->imprimirDetalhes();
     }
@@ -172,4 +174,35 @@ void ListaLigada::buscarPorTitulo(const char* titulo) {
     }
 
     delete[] vetor;
+}
+
+bool ListaLigada::removerManga(const char* titulo) {
+    if (cabeca == nullptr) return false;
+
+    No* atual = cabeca;
+    No* anterior = nullptr;
+
+    while (atual != nullptr && strcmp(atual->manga.getTitulo(), titulo) != 0) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual == nullptr) return false;
+
+    if (anterior == nullptr) {
+        cabeca = atual->proximo;
+    } else {
+        anterior->proximo = atual->proximo;
+    }
+
+    delete atual;
+    return true;
+}
+
+void ListaLigada::sincronizarArvore(ArvoreBST& arvore) {
+    No* temp = cabeca;
+    while (temp != nullptr) {
+        arvore.adicionarManga(temp->manga);
+        temp = temp->proximo;
+    }
 }

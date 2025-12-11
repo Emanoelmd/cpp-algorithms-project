@@ -24,5 +24,6 @@ public:
 
     void adicionarManga(Manga m);
     void exibirPorGenero();
+    bool removerMangaDoGenero(const char* titulo, const char* genero);
 };
 

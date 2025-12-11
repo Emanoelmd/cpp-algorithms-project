@@ -2,6 +2,8 @@
 
 #include "../Manga/Manga.h"
 
+class ArvoreBST;
+
 struct No{
     No* proximo;
     Manga manga;
@@ -12,7 +14,6 @@ struct No{
 class ListaLigada{
     private:
         No* cabeca;
-
         int contarElementos();
 
     public:
@@ -26,4 +27,7 @@ class ListaLigada{
 
         void listarPorTitulo();
         void buscarPorTitulo(const char* titulo);
+
+        bool removerManga(const char* titulo);
+        void sincronizarArvore(ArvoreBST& arvore);
 };
