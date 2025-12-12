@@ -15,7 +15,7 @@ void exibirMenu(){
     printf("6. Excluir manga\n");
     printf("0. Sair\n");
     printf("===================================\n");
-    printf("Escolha uma das opcoes a cima: ");
+    printf("Escolha uma das opcoes acima: ");
 };
 
 int main(){
